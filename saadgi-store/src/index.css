@@ -1,12 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Poppins:wght@300;400;500;600;700;800&display=swap');
 @import 'tailwindcss';
 
 :root {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Poppins', sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color: #34241c;
-  background: #faf7f1;
+  color: #2b1c15;
+  background: #fbf8f4;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -22,7 +22,8 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background: #faf7f1;
+  background: #fbf8f4;
+  font-family: 'Poppins', sans-serif;
 }
 
 #root {
@@ -35,53 +36,60 @@ img {
 }
 
 button,
-input {
-  font: inherit;
+input,
+select,
+textarea {
+  font-family: 'Poppins', sans-serif;
 }
 
 .font-display {
-  font-family: 'Cormorant Garamond', serif;
-  letter-spacing: -0.03em;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  letter-spacing: -0.02em;
+}
+
+.font-poppins {
+  font-family: 'Poppins', sans-serif;
 }
 
 .eyebrow {
-  color: #80674f;
-  font-size: 10px;
+  color: #926d4a;
+  font-size: 11px;
   font-weight: 600;
-  letter-spacing: 0.24em;
+  letter-spacing: 0.26em;
   line-height: 1.5;
   text-transform: uppercase;
 }
 
 .section-title {
-  margin-top: 0.6rem;
-  color: #34241c;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(2.4rem, 5vw, 3.8rem);
-  letter-spacing: -0.035em;
-  line-height: 0.98;
+  margin-top: 0.5rem;
+  color: #2b1c15;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+  letter-spacing: -0.02em;
+  line-height: 1.05;
 }
 
 .hero-carousel {
-  min-height: 570px;
+  min-height: 600px;
 }
 
 .icon-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 2.25rem;
-  height: 2.25rem;
+  width: 2.35rem;
+  height: 2.35rem;
   border-radius: 9999px;
   border: 1px solid transparent;
   background: transparent;
-  color: #34241c;
-  transition: all 0.2s ease;
+  color: #2b1c15;
+  transition: all 0.25s ease;
 }
 
 .icon-button:hover {
   border-color: #d9c7ad;
-  background: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.85);
+  transform: translateY(-1px);
 }
 
 .mobile-menu-button {
@@ -90,8 +98,8 @@ input {
 
 @media (max-width: 768px) {
   .icon-button {
-    width: 2rem;
-    height: 2rem;
+    width: 2.1rem;
+    height: 2.1rem;
   }
 }
 

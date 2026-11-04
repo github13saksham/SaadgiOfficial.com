@@ -2,6 +2,7 @@ import { memo, useMemo, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { ChevronDown, Heart, Menu, Search, ShoppingBag, UserRound, X } from 'lucide-react'
 import logo from '../assets/logo.jpeg'
+import footerLogo from '../assets/logo-closeup.jpeg'
 import { announcementMessages, products } from '../data/mockData'
 
 const navItems = [
@@ -30,12 +31,27 @@ export const Layout = memo(function Layout({ children }: { children: React.React
 
   return (
     <div className="min-h-screen bg-[#faf7f1] text-[#34241c]">
-      <div className="bg-[#34241c] px-4 py-2 text-center text-[11px] font-medium tracking-[0.24em] text-[#f5efe6] uppercase">
-        {announcementMessages[0]}
+      <div className="bg-[#241711] px-4 py-2.5 text-center text-[11px] font-medium tracking-[0.16em] text-[#f5efe6]">
+        <div className="mx-auto flex max-w-[1500px] flex-wrap items-center justify-center gap-x-6 gap-y-1.5 sm:justify-between">
+          <span className="font-normal uppercase tracking-[0.2em] text-[#e3d3c4] text-[10px] sm:text-[11px]">
+            ✨ {announcementMessages[0]}
+          </span>
+          <div className="flex items-center gap-4 text-[11px] text-[#decab5]">
+            <a
+              href="tel:+919876543210"
+              className="inline-flex items-center gap-1.5 font-medium transition-colors hover:text-white"
+            >
+              <span className="text-[10px] uppercase tracking-wider text-[#bba084]">Helpline:</span>
+              <span className="font-bold tracking-wider text-white">+91 98765 43210</span>
+            </a>
+            <span className="hidden text-white/30 sm:inline">|</span>
+            <span className="hidden text-[#c5ad96] sm:inline">Mon - Sat (10 AM - 7 PM IST)</span>
+          </div>
+        </div>
       </div>
 
       <header className="sticky top-0 z-50 border-b border-[#e7dacb] bg-[#fef5ec]">
-        <div className="relative mx-auto flex max-w-[1500px] items-center justify-between px-4 py-4 lg:px-8">
+        <div className="relative mx-auto flex h-[72px] max-w-[1500px] items-center justify-between px-4 sm:h-[88px] lg:px-8">
           <div className="flex w-8 items-center lg:w-[220px]">
             <button
               className="icon-button mobile-menu-button lg:hidden"
@@ -49,7 +65,11 @@ export const Layout = memo(function Layout({ children }: { children: React.React
 
           <div className="absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center justify-center">
             <Link to="/" className="flex items-center justify-center">
-              <img src={logo} alt="SAADGI logo" className="h-14 w-14 object-contain sm:h-20 sm:w-20" />
+              <img
+                src={logo}
+                alt="SAADGI logo"
+                className="h-14 w-14 object-contain sm:h-[72px] sm:w-[72px]"
+              />
             </Link>
           </div>
 
@@ -210,7 +230,11 @@ export const Layout = memo(function Layout({ children }: { children: React.React
       <footer className="border-t border-[#e7dacb] bg-[#fef5ec]">
         <div className="mx-auto grid max-w-[1500px] gap-10 px-4 py-12 md:grid-cols-2 lg:grid-cols-4 lg:px-8">
           <div>
-            <img src={logo} alt="SAADGI logo" className="mb-4 h-14 w-auto object-contain" />
+            <img
+              src={footerLogo}
+              alt="SAADGI emblem"
+              className="mb-4 h-[112px] w-[136px] object-contain sm:h-[132px] sm:w-[160px]"
+            />
             <p className="max-w-xs text-sm leading-7 text-[#5d4538]">
               Thoughtfully crafted ethnic wear for women who value softness, elegance, and timeless style.
             </p>
@@ -259,8 +283,22 @@ export const Layout = memo(function Layout({ children }: { children: React.React
                 <a key={label} href={href} target="_blank" rel="noreferrer" aria-label={label} className="flex h-10 w-10 items-center justify-center rounded-full border border-[#d5c7b7] bg-white text-[#34241c] transition hover:border-[#b69a69]">{label.slice(0, 1)}</a>
               ))}
             </div>
-            <div className="mt-8 rounded-md border border-[#e2d7cb] bg-[#f9f5f0] p-3 text-sm text-[#5d4538]">
-              <a href="mailto:hello@saadgi.in">hello@saadgi.in</a>
+            <div className="mt-8 space-y-2.5 rounded-xl border border-[#e2d7cb] bg-[#fbf7f2] p-4 text-xs text-[#5d4538]">
+              <div className="flex items-center gap-2">
+                <span className="font-bold uppercase tracking-wider text-[#241711]">Phone:</span>
+                <a href="tel:+919876543210" className="font-semibold text-[#8b5a38] hover:underline">+91 98765 43210</a>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="font-bold uppercase tracking-wider text-[#241711]">WhatsApp:</span>
+                <a href="https://wa.me/919876543210" target="_blank" rel="noreferrer" className="font-medium text-[#2f7d4b] hover:underline">+91 98765 43210</a>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="font-bold uppercase tracking-wider text-[#241711]">Email:</span>
+                <a href="mailto:hello@saadgi.in" className="hover:text-[#8b5a38]">hello@saadgi.in</a>
+              </div>
+              <p className="border-t border-[#ebdccb] pt-2 text-[11px] text-[#8a725f]">
+                Mon - Sat: 10:00 AM - 7:00 PM IST
+              </p>
             </div>
           </div>
         </div>
