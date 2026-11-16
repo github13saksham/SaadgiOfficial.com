@@ -1,8 +1,8 @@
-import { memo, useMemo, useState } from 'react'
+import { memo, useMemo, useState, useEffect } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { ChevronDown, Heart, Menu, Search, ShoppingBag, UserRound, X } from 'lucide-react'
-import logo from '../assets/logo.jpeg'
-import footerLogo from '../assets/logo-closeup.jpeg'
+import logo from '../assets/navbar-logo.png'
+import footerLogo from '../assets/footer-logo.png'
 import { announcementMessages, products } from '../data/mockData'
 
 const navItems = [
@@ -17,6 +17,22 @@ export const Layout = memo(function Layout({ children }: { children: React.React
   const [searchOpen, setSearchOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [scrollProgress, setScrollProgress] = useState(0)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const totalScroll = document.documentElement.scrollHeight - window.innerHeight
+      if (totalScroll > 0) {
+        const currentProgress = (window.scrollY / totalScroll) * 100
+        setScrollProgress(Math.min(100, Math.max(0, currentProgress)))
+      } else {
+        setScrollProgress(0)
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
   const searchResults = useMemo(() => {
     const query = searchQuery.trim().toLowerCase()
     if (!query) return products.slice(0, 3)
@@ -30,28 +46,37 @@ export const Layout = memo(function Layout({ children }: { children: React.React
   }, [searchQuery])
 
   return (
-    <div className="min-h-screen bg-[#faf7f1] text-[#34241c]">
-      <div className="bg-[#241711] px-4 py-2.5 text-center text-[11px] font-medium tracking-[0.16em] text-[#f5efe6]">
+    <div className="min-h-screen bg-[#fef5ec] text-[#2a1b12]">
+      {/* Top Announcement Bar */}
+      <div className="bg-[#382514] px-4 py-2.5 text-center text-[11px] font-medium tracking-[0.16em] text-[#fef5ec]">
         <div className="mx-auto flex max-w-[1500px] flex-wrap items-center justify-center gap-x-6 gap-y-1.5 sm:justify-between">
-          <span className="font-normal uppercase tracking-[0.2em] text-[#e3d3c4] text-[10px] sm:text-[11px]">
+          <span className="font-normal uppercase tracking-[0.2em] text-[#e9dcc5] text-[10px] sm:text-[11px]">
             ✨ {announcementMessages[0]}
           </span>
-          <div className="flex items-center gap-4 text-[11px] text-[#decab5]">
+          <div className="flex items-center gap-4 text-[11px] text-[#d9c6a5]">
             <a
               href="tel:+919876543210"
               className="inline-flex items-center gap-1.5 font-medium transition-colors hover:text-white"
             >
-              <span className="text-[10px] uppercase tracking-wider text-[#bba084]">Helpline:</span>
-              <span className="font-bold tracking-wider text-white">+91 98765 43210</span>
+              <span className="text-[10px] uppercase tracking-wider text-[#b69573]">Helpline:</span>
+              <span className="font-bold tracking-wider text-[#fef5ec]">+91 98765 43210</span>
             </a>
-            <span className="hidden text-white/30 sm:inline">|</span>
-            <span className="hidden text-[#c5ad96] sm:inline">Mon - Sat (10 AM - 7 PM IST)</span>
+            <span className="hidden text-[#e9dcc5]/30 sm:inline">|</span>
+            <span className="hidden text-[#c9a97f] sm:inline">Mon - Sat (10 AM - 7 PM IST)</span>
           </div>
         </div>
       </div>
 
-      <header className="sticky top-0 z-50 border-b border-[#e7dacb] bg-[#fef5ec]">
-        <div className="relative mx-auto flex h-[72px] max-w-[1500px] items-center justify-between px-4 sm:h-[88px] lg:px-8">
+      {/* Main Header matching logo exact color #FEF5EC seamlessly */}
+      <header className="sticky top-0 z-[100] border-b border-[#e9dcc5] bg-[#fef5ec]/95 backdrop-blur-md">
+        {/* Dynamic Page Reader Progress Bar */}
+        <div className="absolute top-0 left-0 right-0 h-[3px] bg-transparent z-[110]">
+          <div
+            className="h-full bg-gradient-to-r from-[#c9a97f] via-[#7b5339] to-[#382514] transition-all duration-150 ease-out shadow-[0_0_8px_rgba(201,169,127,0.7)]"
+            style={{ width: `${scrollProgress}%` }}
+          />
+        </div>
+        <div className="relative mx-auto flex h-[76px] max-w-[1500px] items-center justify-between px-4 sm:h-[92px] lg:px-8">
           <div className="flex w-8 items-center lg:w-[220px]">
             <button
               className="icon-button mobile-menu-button lg:hidden"
@@ -64,11 +89,11 @@ export const Layout = memo(function Layout({ children }: { children: React.React
           </div>
 
           <div className="absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center justify-center">
-            <Link to="/" className="flex items-center justify-center">
+            <Link to="/" className="flex items-center justify-center group py-1">
               <img
                 src={logo}
                 alt="SAADGI logo"
-                className="h-14 w-14 object-contain sm:h-[72px] sm:w-[72px]"
+                className="h-10 w-auto max-w-[200px] object-contain sm:h-14 sm:max-w-[260px] md:h-16 md:max-w-[320px] transition duration-300 group-hover:scale-105"
               />
             </Link>
           </div>
@@ -87,33 +112,33 @@ export const Layout = memo(function Layout({ children }: { children: React.React
             </Link>
             <Link to="/wishlist" aria-label="Wishlist" className="icon-button relative">
               <Heart size={18} />
-              <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-[#b69a69] text-[9px] text-white">2</span>
+              <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-[#7b5339] text-[9px] text-white">2</span>
             </Link>
             <Link to="/cart" aria-label="Shopping bag" className="icon-button relative">
               <ShoppingBag size={18} />
-              <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-[#34241c] text-[9px] text-white">3</span>
+              <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-[#382514] text-[9px] text-white">3</span>
             </Link>
           </div>
         </div>
 
-        <nav className="hidden border-t border-[#e7dacb] bg-[#fef5ec] lg:block">
-          <div className="mx-auto flex max-w-[1500px] items-center justify-center gap-8 px-4 py-4 text-[11px] font-semibold uppercase tracking-[0.24em] text-[#34241c]">
+        <nav className="hidden border-t border-[#e9dcc5] bg-[#fef5ec] lg:block">
+          <div className="mx-auto flex max-w-[1500px] items-center justify-center gap-8 px-4 py-3.5 text-[11px] font-semibold uppercase tracking-[0.24em] text-[#382514]">
             {navItems.map((item) => (
               <div key={item.label} className="group relative flex items-center">
                 <NavLink
                   to={item.to}
                   className={({ isActive }) =>
-                    `flex items-center gap-1 transition-colors duration-200 ${isActive ? 'text-[#72523e]' : 'hover:text-[#72523e]'}`
+                    `flex items-center gap-1 transition-colors duration-200 ${isActive ? 'text-[#7b5339] font-bold' : 'hover:text-[#7b5339]'}`
                   }
                 >
                   {item.label}
                   {item.hasDropdown && <ChevronDown size={14} />}
                 </NavLink>
                 {item.hasDropdown && (
-                  <div className="invisible absolute left-1/2 top-full z-20 mt-3 w-52 -translate-x-1/2 rounded-sm border border-[#e8e0d7] bg-white p-3 opacity-0 shadow-lg transition-all duration-200 group-hover:visible group-hover:opacity-100">
-                    <Link to="/collections/festive" className="block border-b border-[#f0eae2] py-2 text-[10px] uppercase tracking-[0.2em] text-[#34241c] hover:text-[#72523e]">Festive Wear</Link>
-                    <Link to="/collections/everyday" className="block border-b border-[#f0eae2] py-2 text-[10px] uppercase tracking-[0.2em] text-[#34241c] hover:text-[#72523e]">Everyday Wear</Link>
-                    <Link to="/collections/premium" className="block py-2 text-[10px] uppercase tracking-[0.2em] text-[#34241c] hover:text-[#72523e]">Premium Collection</Link>
+                  <div className="invisible absolute left-1/2 top-full z-20 mt-3 w-52 -translate-x-1/2 rounded-md border border-[#e9dcc5] bg-[#faf5ed] p-3 opacity-0 shadow-xl transition-all duration-200 group-hover:visible group-hover:opacity-100">
+                    <Link to="/collections/festive" className="block border-b border-[#e9dcc5]/70 py-2 text-[10px] uppercase tracking-[0.2em] text-[#382514] hover:text-[#7b5339]">Festive Wear</Link>
+                    <Link to="/collections/everyday" className="block border-b border-[#e9dcc5]/70 py-2 text-[10px] uppercase tracking-[0.2em] text-[#382514] hover:text-[#7b5339]">Everyday Wear</Link>
+                    <Link to="/collections/premium" className="block py-2 text-[10px] uppercase tracking-[0.2em] text-[#382514] hover:text-[#7b5339]">Premium Collection</Link>
                   </div>
                 )}
               </div>
@@ -121,14 +146,14 @@ export const Layout = memo(function Layout({ children }: { children: React.React
           </div>
         </nav>
         {mobileMenuOpen && (
-          <nav className="border-t border-[#e7dacb] bg-[#fef5ec] px-5 py-3 lg:hidden">
+          <nav className="border-t border-[#e9dcc5] bg-[#fef5ec] px-5 py-3 lg:hidden">
             <div className="mx-auto flex max-w-[1500px] flex-col">
               {navItems.map((item) => (
                 <NavLink
                   key={item.label}
                   to={item.to}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="border-b border-[#e7dacb] py-3 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#34241c] last:border-0"
+                  className="border-b border-[#e9dcc5] py-3 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#382514] last:border-0"
                 >
                   {item.label}
                 </NavLink>
@@ -227,23 +252,23 @@ export const Layout = memo(function Layout({ children }: { children: React.React
         </div>
       )}
 
-      <footer className="border-t border-[#e7dacb] bg-[#fef5ec]">
-        <div className="mx-auto grid max-w-[1500px] gap-10 px-4 py-12 md:grid-cols-2 lg:grid-cols-4 lg:px-8">
+      <footer className="border-t border-[#e9dcc5] bg-[#fef5ec]">
+        <div className="mx-auto grid max-w-[1500px] gap-10 px-4 py-14 md:grid-cols-2 lg:grid-cols-4 lg:px-8">
           <div>
             <img
               src={footerLogo}
               alt="SAADGI emblem"
-              className="mb-4 h-[112px] w-[136px] object-contain sm:h-[132px] sm:w-[160px]"
+              className="mb-4 h-24 w-auto max-w-[180px] object-contain sm:h-28 sm:max-w-[200px]"
             />
-            <p className="max-w-xs text-sm leading-7 text-[#5d4538]">
+            <p className="max-w-xs text-sm leading-7 text-[#5b3a26]">
               Thoughtfully crafted ethnic wear for women who value softness, elegance, and timeless style.
             </p>
-            <p className="mt-4 text-xs uppercase tracking-[0.2em] text-[#72523e]">Elegance in Every Thread.</p>
+            <p className="mt-4 text-xs font-semibold uppercase tracking-[0.2em] text-[#7b5339]">Elegance in Every Thread.</p>
           </div>
 
           <div>
-            <h3 className="mb-5 font-display text-2xl text-[#34241c]">Quick Links</h3>
-            <ul className="space-y-3 text-sm text-[#5d4538]">
+            <h3 className="mb-5 font-display text-2xl text-[#382514]">Quick Links</h3>
+            <ul className="space-y-3 text-sm text-[#5b3a26]">
               {[
                 ['Home', '/'],
                 ['About Us', '/about'],
@@ -251,59 +276,61 @@ export const Layout = memo(function Layout({ children }: { children: React.React
                 ['Best Seller', '/best-sellers'],
                 ['Contact', '/contact'],
               ].map(([label, to]) => (
-                <li key={label}><Link className="hover:text-[#72523e]" to={to}>{label}</Link></li>
+                <li key={label}><Link className="hover:text-[#7b5339] transition-colors" to={to}>{label}</Link></li>
               ))}
             </ul>
           </div>
 
           <div>
-            <h3 className="mb-5 font-display text-2xl text-[#34241c]">Customer Support</h3>
-            <ul className="space-y-3 text-sm text-[#5d4538]">
+            <h3 className="mb-5 font-display text-2xl text-[#382514]">Customer Support</h3>
+            <ul className="space-y-3 text-sm text-[#5b3a26]">
               {[
                 ['Contact Us', '/contact'],
                 ['FAQs', '/faqs'],
                 ['Shipping Policy', '/shipping-policy'],
-                ['Return and Refund Policy', '/refund-policy'],
+                ['Return & Exchange Policy', '/returns-policy'],
+                ['Cancellation Policy', '/cancellation-policy'],
+                ['Refund Policy', '/refund-policy'],
                 ['Privacy Policy', '/privacy-policy'],
                 ['Terms and Conditions', '/terms'],
               ].map(([label, to]) => (
-                <li key={label}><Link className="hover:text-[#72523e]" to={to}>{label}</Link></li>
+                <li key={label}><Link className="hover:text-[#7b5339] transition-colors" to={to}>{label}</Link></li>
               ))}
             </ul>
           </div>
 
           <div>
-            <h3 className="mb-5 font-display text-2xl text-[#34241c]">Follow Us</h3>
+            <h3 className="mb-5 font-display text-2xl text-[#382514]">Follow Us</h3>
             <div className="flex gap-3">
               {[
-                ['Instagram', 'https://www.instagram.com/saadgi/'],
+                ['Instagram', 'https://www.instagram.com/saadgi_.official?cplk=MW5yaW5qemZoY3BleQ=='],
                 ['Facebook', 'https://www.facebook.com/'],
                 ['Pinterest', 'https://www.pinterest.com/'],
               ].map(([label, href]) => (
-                <a key={label} href={href} target="_blank" rel="noreferrer" aria-label={label} className="flex h-10 w-10 items-center justify-center rounded-full border border-[#d5c7b7] bg-white text-[#34241c] transition hover:border-[#b69a69]">{label.slice(0, 1)}</a>
+                <a key={label} href={href} target="_blank" rel="noreferrer" aria-label={label} className="flex h-10 w-10 items-center justify-center rounded-full border border-[#d9c6a5] bg-[#faf5ed] text-[#382514] transition hover:border-[#b69573] hover:bg-white">{label.slice(0, 1)}</a>
               ))}
             </div>
-            <div className="mt-8 space-y-2.5 rounded-xl border border-[#e2d7cb] bg-[#fbf7f2] p-4 text-xs text-[#5d4538]">
+            <div className="mt-7 space-y-2.5 rounded-xl border border-[#e9dcc5] bg-[#faf5ed] p-4 text-xs text-[#5b3a26]">
               <div className="flex items-center gap-2">
-                <span className="font-bold uppercase tracking-wider text-[#241711]">Phone:</span>
-                <a href="tel:+919876543210" className="font-semibold text-[#8b5a38] hover:underline">+91 98765 43210</a>
+                <span className="font-bold uppercase tracking-wider text-[#382514]">Phone:</span>
+                <a href="tel:+919876543210" className="font-semibold text-[#7b5339] hover:underline">+91 98765 43210</a>
               </div>
               <div className="flex items-center gap-2">
-                <span className="font-bold uppercase tracking-wider text-[#241711]">WhatsApp:</span>
+                <span className="font-bold uppercase tracking-wider text-[#382514]">WhatsApp:</span>
                 <a href="https://wa.me/919876543210" target="_blank" rel="noreferrer" className="font-medium text-[#2f7d4b] hover:underline">+91 98765 43210</a>
               </div>
               <div className="flex items-center gap-2">
-                <span className="font-bold uppercase tracking-wider text-[#241711]">Email:</span>
-                <a href="mailto:hello@saadgi.in" className="hover:text-[#8b5a38]">hello@saadgi.in</a>
+                <span className="font-bold uppercase tracking-wider text-[#382514]">Email:</span>
+                <a href="mailto:hello@saadgi.in" className="hover:text-[#7b5339]">hello@saadgi.in</a>
               </div>
-              <p className="border-t border-[#ebdccb] pt-2 text-[11px] text-[#8a725f]">
+              <p className="border-t border-[#e9dcc5] pt-2 text-[11px] text-[#9a7656]">
                 Mon - Sat: 10:00 AM - 7:00 PM IST
               </p>
             </div>
           </div>
         </div>
 
-        <div className="border-t border-[#e5d8c9] py-4 text-center text-xs uppercase tracking-[0.22em] text-[#6a5243]">
+        <div className="border-t border-[#e9dcc5] py-4 text-center text-xs uppercase tracking-[0.22em] text-[#7b5339]">
           © 2026 SAADGI. All Rights Reserved.
         </div>
       </footer>

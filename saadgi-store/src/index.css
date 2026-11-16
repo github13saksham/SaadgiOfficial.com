@@ -1,12 +1,24 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Poppins:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Poppins:wght@300;400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap');
 @import 'tailwindcss';
 
 :root {
-  font-family: 'Poppins', sans-serif;
+  --sg-ink: #2a1b12;
+  --sg-espresso: #382514;
+  --sg-brown: #5b3a26;
+  --sg-mocha: #7b5339;
+  --sg-caramel: #9a7656;
+  --sg-gold: #b69573;
+  --sg-tan: #c9a97f;
+  --sg-sand: #d9c6a5;
+  --sg-beige: #e9dcc5;
+  --sg-logo-bg: #fef5ec;
+  --sg-cream: #faf5ed;
+
+  font-family: 'Poppins', 'DM Sans', sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color: #2b1c15;
-  background: #fbf8f4;
+  color: var(--sg-ink);
+  background: #fef5ec;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -22,8 +34,8 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background: #fbf8f4;
-  font-family: 'Poppins', sans-serif;
+  background: #fef5ec;
+  font-family: 'Poppins', 'DM Sans', sans-serif;
 }
 
 #root {

@@ -34,42 +34,42 @@ export const categories = [
     name: 'Festive Wear',
     description: 'Rich silhouettes for celebrations.',
     image:
-      'https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=80',
+      'https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=900&q=80',
   },
   {
     id: 'everyday',
     name: 'Everyday Wear',
     description: 'Effortless elegance for daily rituals.',
     image:
-      'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80',
+      'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=900&q=80',
   },
   {
     id: 'cotton',
     name: 'Cotton Suits',
     description: 'Breathable textures in timeless tones.',
     image:
-      'https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=900&q=80',
+      'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?auto=format&fit=crop&w=900&q=80',
   },
   {
     id: 'party',
     name: 'Party Wear',
     description: 'Statement pieces for memorable evenings.',
     image:
-      'https://images.unsplash.com/photo-1581044777550-4cfa60707c03?auto=format&fit=crop&w=900&q=80',
+      'https://images.unsplash.com/photo-1566174053879-31528523f8ae?auto=format&fit=crop&w=900&q=80',
   },
   {
     id: 'traditional',
     name: 'Traditional Suits',
     description: 'Heritage-inspired craftsmanship.',
     image:
-      'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80',
+      'https://images.unsplash.com/photo-1550639525-c97d455acf70?auto=format&fit=crop&w=900&q=80',
   },
   {
     id: 'premium',
     name: 'Premium Collection',
     description: 'Handpicked luxury essentials.',
     image:
-      'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=900&q=80',
+      'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=900&q=80',
   },
 ]
 
@@ -284,24 +284,47 @@ export const collections = [
 export const testimonials = [
   {
     name: 'Aarohi S.',
+    city: 'New Delhi',
+    avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=250&q=80',
     product: 'Ivory Grace Suit',
     review:
       'The fabric feels luxurious, the tailoring is graceful, and I received compliments at every event I wore it to. Truly premium.',
     rating: 5,
+    tag: 'Festive Wear',
+    date: '2 days ago',
   },
   {
     name: 'Nisha P.',
+    city: 'Mumbai',
+    avatar: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=250&q=80',
     product: 'Rosewood Heritage Set',
     review:
       'The finish feels couture-level and the fit is extremely flattering. SAADGI has become my go-to for festive dressing.',
     rating: 5,
+    tag: 'Everyday Luxury',
+    date: '5 days ago',
   },
   {
     name: 'Pragya M.',
+    city: 'Bengaluru',
+    avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=250&q=80',
     product: 'Noor Evening Ensemble',
     review:
       'Elegant, soft, and so easy to carry. The styling and detailing are excellent for special occasions.',
-    rating: 4,
+    rating: 5,
+    tag: 'Party Wear',
+    date: '1 week ago',
+  },
+  {
+    name: 'Devika R.',
+    city: 'Jaipur',
+    avatar: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=250&q=80',
+    product: 'Pearl Thread Kurta',
+    review:
+      'The pure cotton weave is breathable and light. The hidden side pockets are a dream for long wedding festivities!',
+    rating: 5,
+    tag: 'Cotton Suits',
+    date: '2 weeks ago',
   },
 ]
 
@@ -329,18 +352,19 @@ export const serviceBlocks = [
 ]
 
 export const instagramShots = [
-  'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80',
-  'https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=600&q=80',
-  'https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=600&q=80',
-  'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=600&q=80',
-  'https://images.unsplash.com/photo-1581044777550-4cfa60707c03?auto=format&fit=crop&w=600&q=80',
+  'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=600&q=80',
+  'https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=600&q=80',
+  'https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=600&q=80',
+  'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=600&q=80',
+  'https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?auto=format&fit=crop&w=600&q=80',
 ]
 
 export const siteSettings = {
   contactEmail: 'hello@saadgi.in',
   phone: '+91 98765 43210',
   address: 'Saket, New Delhi, India',
-  instagram: '@saadgi',
+  instagram: '@saadgi_.official',
+  instagramUrl: 'https://www.instagram.com/saadgi_.official?cplk=MW5yaW5qemZoY3BleQ==',
   facebook: 'facebook.com/saadgi',
   pinterest: 'pinterest.com/saadgi',
   tagline: 'Elegance in Every Thread.',
